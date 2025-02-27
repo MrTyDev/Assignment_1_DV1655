@@ -58,7 +58,7 @@
 
  /* Literals and Identifiers */
 [0-9]+                  {if(USE_LEX_ONLY) {printf("INTEGER_LITERAL ");} else {return yy::parser::make_INTEGER_LITERAL(yytext);}}
-[a-zA-Z][a-zA-Z0-9_]*  {if(USE_LEX_ONLY) {printf("IDENTIFIER ");} else {return yy::parser::make_IDENTIFIER(yytext);}}
+[a-zA-Z_][a-zA-Z0-9_]*  {if(USE_LEX_ONLY) {printf("IDENTIFIER ");} else {return yy::parser::make_IDENTIFIER(yytext);}}
 
  /* Whitespace and Comments */
 [ \t\n\r]+             { /* Skip whitespace */ }

@@ -383,22 +383,21 @@ namespace yy {
     union union_type
     {
       // goal
-      // expression
-      // factor
       // main_class
+      // class_declaration
+      // class_declaration_list
+      // type
+      // factor
       // statement
       // statement_list
-      // return_statement
-      // pre_return_statements
-      // class_declaration_list
-      // class_declaration
-      // type
       // var_declaration
       // var_declaration_list
-      // method_declaration_list
       // method_declaration
+      // method_declaration_list
       // parameter_list
+      // expression
       // expression_list
+      // expression_list_nonempty
       char dummy1[sizeof (Node *)];
 
       // PLUS
@@ -588,22 +587,21 @@ namespace yy {
         S_IDENTIFIER = 42,                       // IDENTIFIER
         S_YYACCEPT = 43,                         // $accept
         S_goal = 44,                             // goal
-        S_expression = 45,                       // expression
-        S_factor = 46,                           // factor
-        S_main_class = 47,                       // main_class
-        S_statement = 48,                        // statement
-        S_statement_list = 49,                   // statement_list
-        S_return_statement = 50,                 // return_statement
-        S_pre_return_statements = 51,            // pre_return_statements
-        S_class_declaration_list = 52,           // class_declaration_list
-        S_class_declaration = 53,                // class_declaration
-        S_type = 54,                             // type
-        S_var_declaration = 55,                  // var_declaration
-        S_var_declaration_list = 56,             // var_declaration_list
-        S_method_declaration_list = 57,          // method_declaration_list
-        S_method_declaration = 58,               // method_declaration
-        S_parameter_list = 59,                   // parameter_list
-        S_expression_list = 60                   // expression_list
+        S_main_class = 45,                       // main_class
+        S_class_declaration = 46,                // class_declaration
+        S_class_declaration_list = 47,           // class_declaration_list
+        S_type = 48,                             // type
+        S_factor = 49,                           // factor
+        S_statement = 50,                        // statement
+        S_statement_list = 51,                   // statement_list
+        S_var_declaration = 52,                  // var_declaration
+        S_var_declaration_list = 53,             // var_declaration_list
+        S_method_declaration = 54,               // method_declaration
+        S_method_declaration_list = 55,          // method_declaration_list
+        S_parameter_list = 56,                   // parameter_list
+        S_expression = 57,                       // expression
+        S_expression_list = 58,                  // expression_list
+        S_expression_list_nonempty = 59          // expression_list_nonempty
       };
     };
 
@@ -639,22 +637,21 @@ namespace yy {
         switch (this->kind ())
     {
       case symbol_kind::S_goal: // goal
-      case symbol_kind::S_expression: // expression
-      case symbol_kind::S_factor: // factor
       case symbol_kind::S_main_class: // main_class
+      case symbol_kind::S_class_declaration: // class_declaration
+      case symbol_kind::S_class_declaration_list: // class_declaration_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_factor: // factor
       case symbol_kind::S_statement: // statement
       case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_return_statement: // return_statement
-      case symbol_kind::S_pre_return_statements: // pre_return_statements
-      case symbol_kind::S_class_declaration_list: // class_declaration_list
-      case symbol_kind::S_class_declaration: // class_declaration
-      case symbol_kind::S_type: // type
       case symbol_kind::S_var_declaration: // var_declaration
       case symbol_kind::S_var_declaration_list: // var_declaration_list
-      case symbol_kind::S_method_declaration_list: // method_declaration_list
       case symbol_kind::S_method_declaration: // method_declaration
+      case symbol_kind::S_method_declaration_list: // method_declaration_list
       case symbol_kind::S_parameter_list: // parameter_list
+      case symbol_kind::S_expression: // expression
       case symbol_kind::S_expression_list: // expression_list
+      case symbol_kind::S_expression_list_nonempty: // expression_list_nonempty
         value.move< Node * > (std::move (that.value));
         break;
 
@@ -771,22 +768,21 @@ namespace yy {
 switch (yykind)
     {
       case symbol_kind::S_goal: // goal
-      case symbol_kind::S_expression: // expression
-      case symbol_kind::S_factor: // factor
       case symbol_kind::S_main_class: // main_class
+      case symbol_kind::S_class_declaration: // class_declaration
+      case symbol_kind::S_class_declaration_list: // class_declaration_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_factor: // factor
       case symbol_kind::S_statement: // statement
       case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_return_statement: // return_statement
-      case symbol_kind::S_pre_return_statements: // pre_return_statements
-      case symbol_kind::S_class_declaration_list: // class_declaration_list
-      case symbol_kind::S_class_declaration: // class_declaration
-      case symbol_kind::S_type: // type
       case symbol_kind::S_var_declaration: // var_declaration
       case symbol_kind::S_var_declaration_list: // var_declaration_list
-      case symbol_kind::S_method_declaration_list: // method_declaration_list
       case symbol_kind::S_method_declaration: // method_declaration
+      case symbol_kind::S_method_declaration_list: // method_declaration_list
       case symbol_kind::S_parameter_list: // parameter_list
+      case symbol_kind::S_expression: // expression
       case symbol_kind::S_expression_list: // expression_list
+      case symbol_kind::S_expression_list_nonempty: // expression_list_nonempty
         value.template destroy< Node * > ();
         break;
 
@@ -1954,9 +1950,9 @@ switch (yykind)
     /// Constants.
     enum
     {
-      yylast_ = 352,     ///< Last index in yytable_.
-      yynnts_ = 18,  ///< Number of nonterminal symbols.
-      yyfinal_ = 7 ///< Termination state number.
+      yylast_ = 357,     ///< Last index in yytable_.
+      yynnts_ = 17,  ///< Number of nonterminal symbols.
+      yyfinal_ = 5 ///< Termination state number.
     };
 
 
@@ -2024,22 +2020,21 @@ switch (yykind)
     switch (this->kind ())
     {
       case symbol_kind::S_goal: // goal
-      case symbol_kind::S_expression: // expression
-      case symbol_kind::S_factor: // factor
       case symbol_kind::S_main_class: // main_class
+      case symbol_kind::S_class_declaration: // class_declaration
+      case symbol_kind::S_class_declaration_list: // class_declaration_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_factor: // factor
       case symbol_kind::S_statement: // statement
       case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_return_statement: // return_statement
-      case symbol_kind::S_pre_return_statements: // pre_return_statements
-      case symbol_kind::S_class_declaration_list: // class_declaration_list
-      case symbol_kind::S_class_declaration: // class_declaration
-      case symbol_kind::S_type: // type
       case symbol_kind::S_var_declaration: // var_declaration
       case symbol_kind::S_var_declaration_list: // var_declaration_list
-      case symbol_kind::S_method_declaration_list: // method_declaration_list
       case symbol_kind::S_method_declaration: // method_declaration
+      case symbol_kind::S_method_declaration_list: // method_declaration_list
       case symbol_kind::S_parameter_list: // parameter_list
+      case symbol_kind::S_expression: // expression
       case symbol_kind::S_expression_list: // expression_list
+      case symbol_kind::S_expression_list_nonempty: // expression_list_nonempty
         value.copy< Node * > (YY_MOVE (that.value));
         break;
 
@@ -2118,22 +2113,21 @@ switch (yykind)
     switch (this->kind ())
     {
       case symbol_kind::S_goal: // goal
-      case symbol_kind::S_expression: // expression
-      case symbol_kind::S_factor: // factor
       case symbol_kind::S_main_class: // main_class
+      case symbol_kind::S_class_declaration: // class_declaration
+      case symbol_kind::S_class_declaration_list: // class_declaration_list
+      case symbol_kind::S_type: // type
+      case symbol_kind::S_factor: // factor
       case symbol_kind::S_statement: // statement
       case symbol_kind::S_statement_list: // statement_list
-      case symbol_kind::S_return_statement: // return_statement
-      case symbol_kind::S_pre_return_statements: // pre_return_statements
-      case symbol_kind::S_class_declaration_list: // class_declaration_list
-      case symbol_kind::S_class_declaration: // class_declaration
-      case symbol_kind::S_type: // type
       case symbol_kind::S_var_declaration: // var_declaration
       case symbol_kind::S_var_declaration_list: // var_declaration_list
-      case symbol_kind::S_method_declaration_list: // method_declaration_list
       case symbol_kind::S_method_declaration: // method_declaration
+      case symbol_kind::S_method_declaration_list: // method_declaration_list
       case symbol_kind::S_parameter_list: // parameter_list
+      case symbol_kind::S_expression: // expression
       case symbol_kind::S_expression_list: // expression_list
+      case symbol_kind::S_expression_list_nonempty: // expression_list_nonempty
         value.move< Node * > (YY_MOVE (s.value));
         break;
 
@@ -2245,7 +2239,7 @@ switch (yykind)
 
 
 } // yy
-#line 2249 "parser.tab.hh"
+#line 2243 "parser.tab.hh"
 
 
 

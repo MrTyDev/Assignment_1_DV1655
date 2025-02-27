@@ -1,0 +1,2025 @@
+Terminals unused in grammar
+
+    GT
+
+
+State 122 conflicts: 1 shift/reduce
+State 130 conflicts: 8 shift/reduce
+
+
+Grammar
+
+    0 $accept: goal "end of file"
+
+    1 goal: main_class class_declaration_list
+
+    2 expression: expression AND expression
+    3           | expression OR expression
+    4           | expression LT expression
+    5           | expression EQ expression
+    6           | expression PLUS expression
+    7           | expression MINUS expression
+    8           | expression MULT expression
+    9           | factor
+   10           | expression LBRACKET expression RBRACKET
+   11           | expression DOT LENGTH
+   12           | expression DOT IDENTIFIER LPAREN expression_list RPAREN
+   13           | NEW INT_TYPE LBRACKET expression RBRACKET
+   14           | NEW IDENTIFIER LPAREN RPAREN
+   15           | NOT expression
+
+   16 factor: INTEGER_LITERAL
+   17       | LPAREN expression RPAREN
+   18       | IDENTIFIER
+   19       | TRUE
+   20       | FALSE
+   21       | THIS
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+   23 statement: LBRACE statement_list RBRACE
+   24          | IF LPAREN expression RPAREN statement ELSE statement
+   25          | IF LPAREN expression RPAREN statement
+   26          | WHILE LPAREN expression RPAREN statement
+   27          | PRINTLN LPAREN expression RPAREN SEMICOLON
+   28          | IDENTIFIER ASSIGN expression SEMICOLON
+   29          | IDENTIFIER LBRACKET expression RBRACKET ASSIGN expression SEMICOLON
+
+   30 statement_list: statement
+   31               | statement_list statement
+
+   32 class_declaration_list: ε
+   33                       | class_declaration_list class_declaration
+
+   34 class_declaration: CLASS IDENTIFIER LBRACE var_declaration_list method_declaration_list RBRACE
+   35                  | CLASS IDENTIFIER EXTENDS IDENTIFIER LBRACE var_declaration_list method_declaration_list RBRACE
+
+   36 type: INT_TYPE LBRACKET RBRACKET
+   37     | BOOLEAN
+   38     | INT_TYPE
+   39     | IDENTIFIER
+
+   40 var_declaration: type IDENTIFIER SEMICOLON
+
+   41 var_declaration_list: ε
+   42                     | var_declaration_list var_declaration
+
+   43 method_declaration_list: ε
+   44                        | method_declaration_list method_declaration
+
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN parameter_list RPAREN LBRACE var_declaration_list statement_list RETURN expression SEMICOLON RBRACE
+
+   46 parameter_list: ε
+   47               | type IDENTIFIER
+   48               | parameter_list COMMA type IDENTIFIER
+
+   49 expression_list: ε
+   50                | expression
+   51                | expression_list expression
+
+
+Terminals, with rules where they appear
+
+    "end of file" (0) 0
+    error (256)
+    PLUS <std::string> (258) 6
+    MINUS <std::string> (259) 7
+    MULT <std::string> (260) 8
+    AND <std::string> (261) 2
+    OR <std::string> (262) 3
+    LT <std::string> (263) 4
+    GT <std::string> (264)
+    EQ <std::string> (265) 5
+    ASSIGN <std::string> (266) 28 29
+    NOT <std::string> (267) 15
+    DOT <std::string> (268) 11 12
+    LPAREN <std::string> (269) 12 14 17 22 24 25 26 27 45
+    RPAREN <std::string> (270) 12 14 17 22 24 25 26 27 45
+    LBRACE <std::string> (271) 22 23 34 35 45
+    RBRACE <std::string> (272) 22 23 34 35 45
+    LBRACKET <std::string> (273) 10 13 22 29 36
+    RBRACKET <std::string> (274) 10 13 22 29 36
+    SEMICOLON <std::string> (275) 27 28 29 40 45
+    COMMA <std::string> (276) 48
+    PUBLIC <std::string> (277) 22 45
+    CLASS <std::string> (278) 22 34 35
+    STATIC <std::string> (279) 22
+    VOID <std::string> (280) 22
+    MAIN <std::string> (281) 22
+    STRING <std::string> (282) 22
+    RETURN <std::string> (283) 45
+    INT_TYPE <std::string> (284) 13 36 38
+    BOOLEAN <std::string> (285) 37
+    IF <std::string> (286) 24 25
+    ELSE <std::string> (287) 24
+    WHILE <std::string> (288) 26
+    PRINTLN <std::string> (289) 27
+    LENGTH <std::string> (290) 11
+    TRUE <std::string> (291) 19
+    FALSE <std::string> (292) 20
+    THIS <std::string> (293) 21
+    NEW <std::string> (294) 13 14
+    EXTENDS <std::string> (295) 35
+    INTEGER_LITERAL <std::string> (296) 16
+    IDENTIFIER <std::string> (297) 12 14 18 22 28 29 34 35 39 40 45 47 48
+
+
+Nonterminals, with rules where they appear
+
+    $accept (43)
+        on left: 0
+    goal <Node *> (44)
+        on left: 1
+        on right: 0
+    expression <Node *> (45)
+        on left: 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+        on right: 2 3 4 5 6 7 8 10 11 12 13 15 17 24 25 26 27 28 29 45 50 51
+    factor <Node *> (46)
+        on left: 16 17 18 19 20 21
+        on right: 9
+    main_class <Node *> (47)
+        on left: 22
+        on right: 1
+    statement <Node *> (48)
+        on left: 23 24 25 26 27 28 29
+        on right: 24 25 26 30 31
+    statement_list <Node *> (49)
+        on left: 30 31
+        on right: 22 23 31 45
+    class_declaration_list <Node *> (50)
+        on left: 32 33
+        on right: 1 33
+    class_declaration <Node *> (51)
+        on left: 34 35
+        on right: 33
+    type <Node *> (52)
+        on left: 36 37 38 39
+        on right: 40 45 47 48
+    var_declaration <Node *> (53)
+        on left: 40
+        on right: 42
+    var_declaration_list <Node *> (54)
+        on left: 41 42
+        on right: 34 35 42 45
+    method_declaration_list <Node *> (55)
+        on left: 43 44
+        on right: 34 35 44
+    method_declaration <Node *> (56)
+        on left: 45
+        on right: 44
+    parameter_list <Node *> (57)
+        on left: 46 47 48
+        on right: 45 48
+    expression_list <Node *> (58)
+        on left: 49 50 51
+        on right: 12 51
+
+
+State 0
+
+    0 $accept: • goal "end of file"
+
+    PUBLIC  shift, and go to state 1
+
+    goal        go to state 2
+    main_class  go to state 3
+
+
+State 1
+
+   22 main_class: PUBLIC • CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    CLASS  shift, and go to state 4
+
+
+State 2
+
+    0 $accept: goal • "end of file"
+
+    "end of file"  shift, and go to state 5
+
+
+State 3
+
+    1 goal: main_class • class_declaration_list
+
+    $default  reduce using rule 32 (class_declaration_list)
+
+    class_declaration_list  go to state 6
+
+
+State 4
+
+   22 main_class: PUBLIC CLASS • IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    IDENTIFIER  shift, and go to state 7
+
+
+State 5
+
+    0 $accept: goal "end of file" •
+
+    $default  accept
+
+
+State 6
+
+    1 goal: main_class class_declaration_list •
+   33 class_declaration_list: class_declaration_list • class_declaration
+
+    CLASS  shift, and go to state 8
+
+    $default  reduce using rule 1 (goal)
+
+    class_declaration  go to state 9
+
+
+State 7
+
+   22 main_class: PUBLIC CLASS IDENTIFIER • LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    LBRACE  shift, and go to state 10
+
+
+State 8
+
+   34 class_declaration: CLASS • IDENTIFIER LBRACE var_declaration_list method_declaration_list RBRACE
+   35                  | CLASS • IDENTIFIER EXTENDS IDENTIFIER LBRACE var_declaration_list method_declaration_list RBRACE
+
+    IDENTIFIER  shift, and go to state 11
+
+
+State 9
+
+   33 class_declaration_list: class_declaration_list class_declaration •
+
+    $default  reduce using rule 33 (class_declaration_list)
+
+
+State 10
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE • PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    PUBLIC  shift, and go to state 12
+
+
+State 11
+
+   34 class_declaration: CLASS IDENTIFIER • LBRACE var_declaration_list method_declaration_list RBRACE
+   35                  | CLASS IDENTIFIER • EXTENDS IDENTIFIER LBRACE var_declaration_list method_declaration_list RBRACE
+
+    LBRACE   shift, and go to state 13
+    EXTENDS  shift, and go to state 14
+
+
+State 12
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC • STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    STATIC  shift, and go to state 15
+
+
+State 13
+
+   34 class_declaration: CLASS IDENTIFIER LBRACE • var_declaration_list method_declaration_list RBRACE
+
+    $default  reduce using rule 41 (var_declaration_list)
+
+    var_declaration_list  go to state 16
+
+
+State 14
+
+   35 class_declaration: CLASS IDENTIFIER EXTENDS • IDENTIFIER LBRACE var_declaration_list method_declaration_list RBRACE
+
+    IDENTIFIER  shift, and go to state 17
+
+
+State 15
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC • VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    VOID  shift, and go to state 18
+
+
+State 16
+
+   34 class_declaration: CLASS IDENTIFIER LBRACE var_declaration_list • method_declaration_list RBRACE
+   42 var_declaration_list: var_declaration_list • var_declaration
+
+    INT_TYPE    shift, and go to state 19
+    BOOLEAN     shift, and go to state 20
+    IDENTIFIER  shift, and go to state 21
+
+    $default  reduce using rule 43 (method_declaration_list)
+
+    type                     go to state 22
+    var_declaration          go to state 23
+    method_declaration_list  go to state 24
+
+
+State 17
+
+   35 class_declaration: CLASS IDENTIFIER EXTENDS IDENTIFIER • LBRACE var_declaration_list method_declaration_list RBRACE
+
+    LBRACE  shift, and go to state 25
+
+
+State 18
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID • MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    MAIN  shift, and go to state 26
+
+
+State 19
+
+   36 type: INT_TYPE • LBRACKET RBRACKET
+   38     | INT_TYPE •
+
+    LBRACKET  shift, and go to state 27
+
+    $default  reduce using rule 38 (type)
+
+
+State 20
+
+   37 type: BOOLEAN •
+
+    $default  reduce using rule 37 (type)
+
+
+State 21
+
+   39 type: IDENTIFIER •
+
+    $default  reduce using rule 39 (type)
+
+
+State 22
+
+   40 var_declaration: type • IDENTIFIER SEMICOLON
+
+    IDENTIFIER  shift, and go to state 28
+
+
+State 23
+
+   42 var_declaration_list: var_declaration_list var_declaration •
+
+    $default  reduce using rule 42 (var_declaration_list)
+
+
+State 24
+
+   34 class_declaration: CLASS IDENTIFIER LBRACE var_declaration_list method_declaration_list • RBRACE
+   44 method_declaration_list: method_declaration_list • method_declaration
+
+    RBRACE  shift, and go to state 29
+    PUBLIC  shift, and go to state 30
+
+    method_declaration  go to state 31
+
+
+State 25
+
+   35 class_declaration: CLASS IDENTIFIER EXTENDS IDENTIFIER LBRACE • var_declaration_list method_declaration_list RBRACE
+
+    $default  reduce using rule 41 (var_declaration_list)
+
+    var_declaration_list  go to state 32
+
+
+State 26
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN • LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    LPAREN  shift, and go to state 33
+
+
+State 27
+
+   36 type: INT_TYPE LBRACKET • RBRACKET
+
+    RBRACKET  shift, and go to state 34
+
+
+State 28
+
+   40 var_declaration: type IDENTIFIER • SEMICOLON
+
+    SEMICOLON  shift, and go to state 35
+
+
+State 29
+
+   34 class_declaration: CLASS IDENTIFIER LBRACE var_declaration_list method_declaration_list RBRACE •
+
+    $default  reduce using rule 34 (class_declaration)
+
+
+State 30
+
+   45 method_declaration: PUBLIC • type IDENTIFIER LPAREN parameter_list RPAREN LBRACE var_declaration_list statement_list RETURN expression SEMICOLON RBRACE
+
+    INT_TYPE    shift, and go to state 19
+    BOOLEAN     shift, and go to state 20
+    IDENTIFIER  shift, and go to state 21
+
+    type  go to state 36
+
+
+State 31
+
+   44 method_declaration_list: method_declaration_list method_declaration •
+
+    $default  reduce using rule 44 (method_declaration_list)
+
+
+State 32
+
+   35 class_declaration: CLASS IDENTIFIER EXTENDS IDENTIFIER LBRACE var_declaration_list • method_declaration_list RBRACE
+   42 var_declaration_list: var_declaration_list • var_declaration
+
+    INT_TYPE    shift, and go to state 19
+    BOOLEAN     shift, and go to state 20
+    IDENTIFIER  shift, and go to state 21
+
+    $default  reduce using rule 43 (method_declaration_list)
+
+    type                     go to state 22
+    var_declaration          go to state 23
+    method_declaration_list  go to state 37
+
+
+State 33
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN • STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    STRING  shift, and go to state 38
+
+
+State 34
+
+   36 type: INT_TYPE LBRACKET RBRACKET •
+
+    $default  reduce using rule 36 (type)
+
+
+State 35
+
+   40 var_declaration: type IDENTIFIER SEMICOLON •
+
+    $default  reduce using rule 40 (var_declaration)
+
+
+State 36
+
+   45 method_declaration: PUBLIC type • IDENTIFIER LPAREN parameter_list RPAREN LBRACE var_declaration_list statement_list RETURN expression SEMICOLON RBRACE
+
+    IDENTIFIER  shift, and go to state 39
+
+
+State 37
+
+   35 class_declaration: CLASS IDENTIFIER EXTENDS IDENTIFIER LBRACE var_declaration_list method_declaration_list • RBRACE
+   44 method_declaration_list: method_declaration_list • method_declaration
+
+    RBRACE  shift, and go to state 40
+    PUBLIC  shift, and go to state 30
+
+    method_declaration  go to state 31
+
+
+State 38
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING • LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    LBRACKET  shift, and go to state 41
+
+
+State 39
+
+   45 method_declaration: PUBLIC type IDENTIFIER • LPAREN parameter_list RPAREN LBRACE var_declaration_list statement_list RETURN expression SEMICOLON RBRACE
+
+    LPAREN  shift, and go to state 42
+
+
+State 40
+
+   35 class_declaration: CLASS IDENTIFIER EXTENDS IDENTIFIER LBRACE var_declaration_list method_declaration_list RBRACE •
+
+    $default  reduce using rule 35 (class_declaration)
+
+
+State 41
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET • RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    RBRACKET  shift, and go to state 43
+
+
+State 42
+
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN • parameter_list RPAREN LBRACE var_declaration_list statement_list RETURN expression SEMICOLON RBRACE
+
+    INT_TYPE    shift, and go to state 19
+    BOOLEAN     shift, and go to state 20
+    IDENTIFIER  shift, and go to state 21
+
+    $default  reduce using rule 46 (parameter_list)
+
+    type            go to state 44
+    parameter_list  go to state 45
+
+
+State 43
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET • IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE
+
+    IDENTIFIER  shift, and go to state 46
+
+
+State 44
+
+   47 parameter_list: type • IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 47
+
+
+State 45
+
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN parameter_list • RPAREN LBRACE var_declaration_list statement_list RETURN expression SEMICOLON RBRACE
+   48 parameter_list: parameter_list • COMMA type IDENTIFIER
+
+    RPAREN  shift, and go to state 48
+    COMMA   shift, and go to state 49
+
+
+State 46
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER • RPAREN LBRACE statement_list RBRACE RBRACE
+
+    RPAREN  shift, and go to state 50
+
+
+State 47
+
+   47 parameter_list: type IDENTIFIER •
+
+    $default  reduce using rule 47 (parameter_list)
+
+
+State 48
+
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN parameter_list RPAREN • LBRACE var_declaration_list statement_list RETURN expression SEMICOLON RBRACE
+
+    LBRACE  shift, and go to state 51
+
+
+State 49
+
+   48 parameter_list: parameter_list COMMA • type IDENTIFIER
+
+    INT_TYPE    shift, and go to state 19
+    BOOLEAN     shift, and go to state 20
+    IDENTIFIER  shift, and go to state 21
+
+    type  go to state 52
+
+
+State 50
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN • LBRACE statement_list RBRACE RBRACE
+
+    LBRACE  shift, and go to state 53
+
+
+State 51
+
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN parameter_list RPAREN LBRACE • var_declaration_list statement_list RETURN expression SEMICOLON RBRACE
+
+    $default  reduce using rule 41 (var_declaration_list)
+
+    var_declaration_list  go to state 54
+
+
+State 52
+
+   48 parameter_list: parameter_list COMMA type • IDENTIFIER
+
+    IDENTIFIER  shift, and go to state 55
+
+
+State 53
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE • statement_list RBRACE RBRACE
+
+    LBRACE      shift, and go to state 56
+    IF          shift, and go to state 57
+    WHILE       shift, and go to state 58
+    PRINTLN     shift, and go to state 59
+    IDENTIFIER  shift, and go to state 60
+
+    statement       go to state 61
+    statement_list  go to state 62
+
+
+State 54
+
+   42 var_declaration_list: var_declaration_list • var_declaration
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN parameter_list RPAREN LBRACE var_declaration_list • statement_list RETURN expression SEMICOLON RBRACE
+
+    LBRACE      shift, and go to state 56
+    INT_TYPE    shift, and go to state 19
+    BOOLEAN     shift, and go to state 20
+    IF          shift, and go to state 57
+    WHILE       shift, and go to state 58
+    PRINTLN     shift, and go to state 59
+    IDENTIFIER  shift, and go to state 63
+
+    statement        go to state 61
+    statement_list   go to state 64
+    type             go to state 22
+    var_declaration  go to state 23
+
+
+State 55
+
+   48 parameter_list: parameter_list COMMA type IDENTIFIER •
+
+    $default  reduce using rule 48 (parameter_list)
+
+
+State 56
+
+   23 statement: LBRACE • statement_list RBRACE
+
+    LBRACE      shift, and go to state 56
+    IF          shift, and go to state 57
+    WHILE       shift, and go to state 58
+    PRINTLN     shift, and go to state 59
+    IDENTIFIER  shift, and go to state 60
+
+    statement       go to state 61
+    statement_list  go to state 65
+
+
+State 57
+
+   24 statement: IF • LPAREN expression RPAREN statement ELSE statement
+   25          | IF • LPAREN expression RPAREN statement
+
+    LPAREN  shift, and go to state 66
+
+
+State 58
+
+   26 statement: WHILE • LPAREN expression RPAREN statement
+
+    LPAREN  shift, and go to state 67
+
+
+State 59
+
+   27 statement: PRINTLN • LPAREN expression RPAREN SEMICOLON
+
+    LPAREN  shift, and go to state 68
+
+
+State 60
+
+   28 statement: IDENTIFIER • ASSIGN expression SEMICOLON
+   29          | IDENTIFIER • LBRACKET expression RBRACKET ASSIGN expression SEMICOLON
+
+    ASSIGN    shift, and go to state 69
+    LBRACKET  shift, and go to state 70
+
+
+State 61
+
+   30 statement_list: statement •
+
+    $default  reduce using rule 30 (statement_list)
+
+
+State 62
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list • RBRACE RBRACE
+   31 statement_list: statement_list • statement
+
+    LBRACE      shift, and go to state 56
+    RBRACE      shift, and go to state 71
+    IF          shift, and go to state 57
+    WHILE       shift, and go to state 58
+    PRINTLN     shift, and go to state 59
+    IDENTIFIER  shift, and go to state 60
+
+    statement  go to state 72
+
+
+State 63
+
+   28 statement: IDENTIFIER • ASSIGN expression SEMICOLON
+   29          | IDENTIFIER • LBRACKET expression RBRACKET ASSIGN expression SEMICOLON
+   39 type: IDENTIFIER •
+
+    ASSIGN    shift, and go to state 69
+    LBRACKET  shift, and go to state 70
+
+    $default  reduce using rule 39 (type)
+
+
+State 64
+
+   31 statement_list: statement_list • statement
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN parameter_list RPAREN LBRACE var_declaration_list statement_list • RETURN expression SEMICOLON RBRACE
+
+    LBRACE      shift, and go to state 56
+    RETURN      shift, and go to state 73
+    IF          shift, and go to state 57
+    WHILE       shift, and go to state 58
+    PRINTLN     shift, and go to state 59
+    IDENTIFIER  shift, and go to state 60
+
+    statement  go to state 72
+
+
+State 65
+
+   23 statement: LBRACE statement_list • RBRACE
+   31 statement_list: statement_list • statement
+
+    LBRACE      shift, and go to state 56
+    RBRACE      shift, and go to state 74
+    IF          shift, and go to state 57
+    WHILE       shift, and go to state 58
+    PRINTLN     shift, and go to state 59
+    IDENTIFIER  shift, and go to state 60
+
+    statement  go to state 72
+
+
+State 66
+
+   24 statement: IF LPAREN • expression RPAREN statement ELSE statement
+   25          | IF LPAREN • expression RPAREN statement
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 83
+    factor      go to state 84
+
+
+State 67
+
+   26 statement: WHILE LPAREN • expression RPAREN statement
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 85
+    factor      go to state 84
+
+
+State 68
+
+   27 statement: PRINTLN LPAREN • expression RPAREN SEMICOLON
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 86
+    factor      go to state 84
+
+
+State 69
+
+   28 statement: IDENTIFIER ASSIGN • expression SEMICOLON
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 87
+    factor      go to state 84
+
+
+State 70
+
+   29 statement: IDENTIFIER LBRACKET • expression RBRACKET ASSIGN expression SEMICOLON
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 88
+    factor      go to state 84
+
+
+State 71
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE • RBRACE
+
+    RBRACE  shift, and go to state 89
+
+
+State 72
+
+   31 statement_list: statement_list statement •
+
+    $default  reduce using rule 31 (statement_list)
+
+
+State 73
+
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN parameter_list RPAREN LBRACE var_declaration_list statement_list RETURN • expression SEMICOLON RBRACE
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 90
+    factor      go to state 84
+
+
+State 74
+
+   23 statement: LBRACE statement_list RBRACE •
+
+    $default  reduce using rule 23 (statement)
+
+
+State 75
+
+   15 expression: NOT • expression
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 91
+    factor      go to state 84
+
+
+State 76
+
+   17 factor: LPAREN • expression RPAREN
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 92
+    factor      go to state 84
+
+
+State 77
+
+   19 factor: TRUE •
+
+    $default  reduce using rule 19 (factor)
+
+
+State 78
+
+   20 factor: FALSE •
+
+    $default  reduce using rule 20 (factor)
+
+
+State 79
+
+   21 factor: THIS •
+
+    $default  reduce using rule 21 (factor)
+
+
+State 80
+
+   13 expression: NEW • INT_TYPE LBRACKET expression RBRACKET
+   14           | NEW • IDENTIFIER LPAREN RPAREN
+
+    INT_TYPE    shift, and go to state 93
+    IDENTIFIER  shift, and go to state 94
+
+
+State 81
+
+   16 factor: INTEGER_LITERAL •
+
+    $default  reduce using rule 16 (factor)
+
+
+State 82
+
+   18 factor: IDENTIFIER •
+
+    $default  reduce using rule 18 (factor)
+
+
+State 83
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   24 statement: IF LPAREN expression • RPAREN statement ELSE statement
+   25          | IF LPAREN expression • RPAREN statement
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    AND       shift, and go to state 98
+    OR        shift, and go to state 99
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    RPAREN    shift, and go to state 103
+    LBRACKET  shift, and go to state 104
+
+
+State 84
+
+    9 expression: factor •
+
+    $default  reduce using rule 9 (expression)
+
+
+State 85
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   26 statement: WHILE LPAREN expression • RPAREN statement
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    AND       shift, and go to state 98
+    OR        shift, and go to state 99
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    RPAREN    shift, and go to state 105
+    LBRACKET  shift, and go to state 104
+
+
+State 86
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   27 statement: PRINTLN LPAREN expression • RPAREN SEMICOLON
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    AND       shift, and go to state 98
+    OR        shift, and go to state 99
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    RPAREN    shift, and go to state 106
+    LBRACKET  shift, and go to state 104
+
+
+State 87
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   28 statement: IDENTIFIER ASSIGN expression • SEMICOLON
+
+    PLUS       shift, and go to state 95
+    MINUS      shift, and go to state 96
+    MULT       shift, and go to state 97
+    AND        shift, and go to state 98
+    OR         shift, and go to state 99
+    LT         shift, and go to state 100
+    EQ         shift, and go to state 101
+    DOT        shift, and go to state 102
+    LBRACKET   shift, and go to state 104
+    SEMICOLON  shift, and go to state 107
+
+
+State 88
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   29 statement: IDENTIFIER LBRACKET expression • RBRACKET ASSIGN expression SEMICOLON
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    AND       shift, and go to state 98
+    OR        shift, and go to state 99
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+    RBRACKET  shift, and go to state 108
+
+
+State 89
+
+   22 main_class: PUBLIC CLASS IDENTIFIER LBRACE PUBLIC STATIC VOID MAIN LPAREN STRING LBRACKET RBRACKET IDENTIFIER RPAREN LBRACE statement_list RBRACE RBRACE •
+
+    $default  reduce using rule 22 (main_class)
+
+
+State 90
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN parameter_list RPAREN LBRACE var_declaration_list statement_list RETURN expression • SEMICOLON RBRACE
+
+    PLUS       shift, and go to state 95
+    MINUS      shift, and go to state 96
+    MULT       shift, and go to state 97
+    AND        shift, and go to state 98
+    OR         shift, and go to state 99
+    LT         shift, and go to state 100
+    EQ         shift, and go to state 101
+    DOT        shift, and go to state 102
+    LBRACKET   shift, and go to state 104
+    SEMICOLON  shift, and go to state 109
+
+
+State 91
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   15           | NOT expression •
+
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+
+    $default  reduce using rule 15 (expression)
+
+
+State 92
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   17 factor: LPAREN expression • RPAREN
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    AND       shift, and go to state 98
+    OR        shift, and go to state 99
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    RPAREN    shift, and go to state 110
+    LBRACKET  shift, and go to state 104
+
+
+State 93
+
+   13 expression: NEW INT_TYPE • LBRACKET expression RBRACKET
+
+    LBRACKET  shift, and go to state 111
+
+
+State 94
+
+   14 expression: NEW IDENTIFIER • LPAREN RPAREN
+
+    LPAREN  shift, and go to state 112
+
+
+State 95
+
+    6 expression: expression PLUS • expression
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 113
+    factor      go to state 84
+
+
+State 96
+
+    7 expression: expression MINUS • expression
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 114
+    factor      go to state 84
+
+
+State 97
+
+    8 expression: expression MULT • expression
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 115
+    factor      go to state 84
+
+
+State 98
+
+    2 expression: expression AND • expression
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 116
+    factor      go to state 84
+
+
+State 99
+
+    3 expression: expression OR • expression
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 117
+    factor      go to state 84
+
+
+State 100
+
+    4 expression: expression LT • expression
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 118
+    factor      go to state 84
+
+
+State 101
+
+    5 expression: expression EQ • expression
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 119
+    factor      go to state 84
+
+
+State 102
+
+   11 expression: expression DOT • LENGTH
+   12           | expression DOT • IDENTIFIER LPAREN expression_list RPAREN
+
+    LENGTH      shift, and go to state 120
+    IDENTIFIER  shift, and go to state 121
+
+
+State 103
+
+   24 statement: IF LPAREN expression RPAREN • statement ELSE statement
+   25          | IF LPAREN expression RPAREN • statement
+
+    LBRACE      shift, and go to state 56
+    IF          shift, and go to state 57
+    WHILE       shift, and go to state 58
+    PRINTLN     shift, and go to state 59
+    IDENTIFIER  shift, and go to state 60
+
+    statement  go to state 122
+
+
+State 104
+
+   10 expression: expression LBRACKET • expression RBRACKET
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 123
+    factor      go to state 84
+
+
+State 105
+
+   26 statement: WHILE LPAREN expression RPAREN • statement
+
+    LBRACE      shift, and go to state 56
+    IF          shift, and go to state 57
+    WHILE       shift, and go to state 58
+    PRINTLN     shift, and go to state 59
+    IDENTIFIER  shift, and go to state 60
+
+    statement  go to state 124
+
+
+State 106
+
+   27 statement: PRINTLN LPAREN expression RPAREN • SEMICOLON
+
+    SEMICOLON  shift, and go to state 125
+
+
+State 107
+
+   28 statement: IDENTIFIER ASSIGN expression SEMICOLON •
+
+    $default  reduce using rule 28 (statement)
+
+
+State 108
+
+   29 statement: IDENTIFIER LBRACKET expression RBRACKET • ASSIGN expression SEMICOLON
+
+    ASSIGN  shift, and go to state 126
+
+
+State 109
+
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN parameter_list RPAREN LBRACE var_declaration_list statement_list RETURN expression SEMICOLON • RBRACE
+
+    RBRACE  shift, and go to state 127
+
+
+State 110
+
+   17 factor: LPAREN expression RPAREN •
+
+    $default  reduce using rule 17 (factor)
+
+
+State 111
+
+   13 expression: NEW INT_TYPE LBRACKET • expression RBRACKET
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 128
+    factor      go to state 84
+
+
+State 112
+
+   14 expression: NEW IDENTIFIER LPAREN • RPAREN
+
+    RPAREN  shift, and go to state 129
+
+
+State 113
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    6           | expression PLUS expression •
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+
+    MULT      shift, and go to state 97
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+
+    $default  reduce using rule 6 (expression)
+
+
+State 114
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    7           | expression MINUS expression •
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+
+    MULT      shift, and go to state 97
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+
+    $default  reduce using rule 7 (expression)
+
+
+State 115
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+    8           | expression MULT expression •
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+
+    $default  reduce using rule 8 (expression)
+
+
+State 116
+
+    2 expression: expression • AND expression
+    2           | expression AND expression •
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+
+    $default  reduce using rule 2 (expression)
+
+
+State 117
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    3           | expression OR expression •
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    AND       shift, and go to state 98
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+
+    $default  reduce using rule 3 (expression)
+
+
+State 118
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    4           | expression LT expression •
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+
+    $default  reduce using rule 4 (expression)
+
+
+State 119
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    5           | expression EQ expression •
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    LT        shift, and go to state 100
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+
+    $default  reduce using rule 5 (expression)
+
+
+State 120
+
+   11 expression: expression DOT LENGTH •
+
+    $default  reduce using rule 11 (expression)
+
+
+State 121
+
+   12 expression: expression DOT IDENTIFIER • LPAREN expression_list RPAREN
+
+    LPAREN  shift, and go to state 130
+
+
+State 122
+
+   24 statement: IF LPAREN expression RPAREN statement • ELSE statement
+   25          | IF LPAREN expression RPAREN statement •
+
+    ELSE  shift, and go to state 131
+
+    ELSE      [reduce using rule 25 (statement)]
+    $default  reduce using rule 25 (statement)
+
+    shift/reduce conflict on token ELSE:
+       25 statement: IF LPAREN expression RPAREN statement •
+       24 statement: IF LPAREN expression RPAREN statement • ELSE statement
+      Example: IF LPAREN expression RPAREN IF LPAREN expression RPAREN statement • ELSE statement
+      Shift derivation
+        statement
+        ↳ 25: IF LPAREN expression RPAREN statement
+                                          ↳ 24: IF LPAREN expression RPAREN statement • ELSE statement
+      Reduce derivation
+        statement
+        ↳ 24: IF LPAREN expression RPAREN statement                                     ELSE statement
+                                          ↳ 25: IF LPAREN expression RPAREN statement •
+
+
+
+State 123
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   10           | expression LBRACKET expression • RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    AND       shift, and go to state 98
+    OR        shift, and go to state 99
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+    RBRACKET  shift, and go to state 132
+
+
+State 124
+
+   26 statement: WHILE LPAREN expression RPAREN statement •
+
+    $default  reduce using rule 26 (statement)
+
+
+State 125
+
+   27 statement: PRINTLN LPAREN expression RPAREN SEMICOLON •
+
+    $default  reduce using rule 27 (statement)
+
+
+State 126
+
+   29 statement: IDENTIFIER LBRACKET expression RBRACKET ASSIGN • expression SEMICOLON
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 133
+    factor      go to state 84
+
+
+State 127
+
+   45 method_declaration: PUBLIC type IDENTIFIER LPAREN parameter_list RPAREN LBRACE var_declaration_list statement_list RETURN expression SEMICOLON RBRACE •
+
+    $default  reduce using rule 45 (method_declaration)
+
+
+State 128
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   13           | NEW INT_TYPE LBRACKET expression • RBRACKET
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    AND       shift, and go to state 98
+    OR        shift, and go to state 99
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+    RBRACKET  shift, and go to state 134
+
+
+State 129
+
+   14 expression: NEW IDENTIFIER LPAREN RPAREN •
+
+    $default  reduce using rule 14 (expression)
+
+
+State 130
+
+   12 expression: expression DOT IDENTIFIER LPAREN • expression_list RPAREN
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    NOT              [reduce using rule 49 (expression_list)]
+    LPAREN           [reduce using rule 49 (expression_list)]
+    TRUE             [reduce using rule 49 (expression_list)]
+    FALSE            [reduce using rule 49 (expression_list)]
+    THIS             [reduce using rule 49 (expression_list)]
+    NEW              [reduce using rule 49 (expression_list)]
+    INTEGER_LITERAL  [reduce using rule 49 (expression_list)]
+    IDENTIFIER       [reduce using rule 49 (expression_list)]
+    $default         reduce using rule 49 (expression_list)
+
+    expression       go to state 135
+    factor           go to state 84
+    expression_list  go to state 136
+
+    shift/reduce conflict on token NEW:
+       49 expression_list: ε •
+       13 expression: • NEW INT_TYPE LBRACKET expression RBRACKET
+      Example: • NEW INT_TYPE LBRACKET expression RBRACKET
+      Shift derivation
+        expression_list
+        ↳ 50: expression
+              ↳ 13: • NEW INT_TYPE LBRACKET expression RBRACKET
+      Reduce derivation
+        expression_list
+        ↳ 51: expression_list expression
+              ↳ 49: ε •       ↳ 13: NEW INT_TYPE LBRACKET expression RBRACKET
+
+    shift/reduce conflict on token NEW:
+       49 expression_list: ε •
+       14 expression: • NEW IDENTIFIER LPAREN RPAREN
+      Example: • NEW IDENTIFIER LPAREN RPAREN
+      Shift derivation
+        expression_list
+        ↳ 50: expression
+              ↳ 14: • NEW IDENTIFIER LPAREN RPAREN
+      Reduce derivation
+        expression_list
+        ↳ 51: expression_list expression
+              ↳ 49: ε •       ↳ 14: NEW IDENTIFIER LPAREN RPAREN
+
+    shift/reduce conflict on token NOT:
+       49 expression_list: ε •
+       15 expression: • NOT expression
+      Example: • NOT expression
+      Shift derivation
+        expression_list
+        ↳ 50: expression
+              ↳ 15: • NOT expression
+      Reduce derivation
+        expression_list
+        ↳ 51: expression_list expression
+              ↳ 49: ε •       ↳ 15: NOT expression
+
+    shift/reduce conflict on token INTEGER_LITERAL:
+       49 expression_list: ε •
+       16 factor: • INTEGER_LITERAL
+      Example: • INTEGER_LITERAL
+      Shift derivation
+        expression_list
+        ↳ 50: expression
+              ↳ 9: factor
+                   ↳ 16: • INTEGER_LITERAL
+      Reduce derivation
+        expression_list
+        ↳ 51: expression_list expression
+              ↳ 49: ε •       ↳ 9: factor
+                                   ↳ 16: INTEGER_LITERAL
+
+    shift/reduce conflict on token LPAREN:
+       49 expression_list: ε •
+       17 factor: • LPAREN expression RPAREN
+      Example: • LPAREN expression RPAREN
+      Shift derivation
+        expression_list
+        ↳ 50: expression
+              ↳ 9: factor
+                   ↳ 17: • LPAREN expression RPAREN
+      Reduce derivation
+        expression_list
+        ↳ 51: expression_list expression
+              ↳ 49: ε •       ↳ 9: factor
+                                   ↳ 17: LPAREN expression RPAREN
+
+    shift/reduce conflict on token IDENTIFIER:
+       49 expression_list: ε •
+       18 factor: • IDENTIFIER
+      Example: • IDENTIFIER
+      Shift derivation
+        expression_list
+        ↳ 50: expression
+              ↳ 9: factor
+                   ↳ 18: • IDENTIFIER
+      Reduce derivation
+        expression_list
+        ↳ 51: expression_list expression
+              ↳ 49: ε •       ↳ 9: factor
+                                   ↳ 18: IDENTIFIER
+
+    shift/reduce conflict on token TRUE:
+       49 expression_list: ε •
+       19 factor: • TRUE
+      Example: • TRUE
+      Shift derivation
+        expression_list
+        ↳ 50: expression
+              ↳ 9: factor
+                   ↳ 19: • TRUE
+      Reduce derivation
+        expression_list
+        ↳ 51: expression_list expression
+              ↳ 49: ε •       ↳ 9: factor
+                                   ↳ 19: TRUE
+
+    shift/reduce conflict on token FALSE:
+       49 expression_list: ε •
+       20 factor: • FALSE
+      Example: • FALSE
+      Shift derivation
+        expression_list
+        ↳ 50: expression
+              ↳ 9: factor
+                   ↳ 20: • FALSE
+      Reduce derivation
+        expression_list
+        ↳ 51: expression_list expression
+              ↳ 49: ε •       ↳ 9: factor
+                                   ↳ 20: FALSE
+
+    shift/reduce conflict on token THIS:
+       49 expression_list: ε •
+       21 factor: • THIS
+      Example: • THIS
+      Shift derivation
+        expression_list
+        ↳ 50: expression
+              ↳ 9: factor
+                   ↳ 21: • THIS
+      Reduce derivation
+        expression_list
+        ↳ 51: expression_list expression
+              ↳ 49: ε •       ↳ 9: factor
+                                   ↳ 21: THIS
+
+
+
+State 131
+
+   24 statement: IF LPAREN expression RPAREN statement ELSE • statement
+
+    LBRACE      shift, and go to state 56
+    IF          shift, and go to state 57
+    WHILE       shift, and go to state 58
+    PRINTLN     shift, and go to state 59
+    IDENTIFIER  shift, and go to state 60
+
+    statement  go to state 137
+
+
+State 132
+
+   10 expression: expression LBRACKET expression RBRACKET •
+
+    $default  reduce using rule 10 (expression)
+
+
+State 133
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   29 statement: IDENTIFIER LBRACKET expression RBRACKET ASSIGN expression • SEMICOLON
+
+    PLUS       shift, and go to state 95
+    MINUS      shift, and go to state 96
+    MULT       shift, and go to state 97
+    AND        shift, and go to state 98
+    OR         shift, and go to state 99
+    LT         shift, and go to state 100
+    EQ         shift, and go to state 101
+    DOT        shift, and go to state 102
+    LBRACKET   shift, and go to state 104
+    SEMICOLON  shift, and go to state 138
+
+
+State 134
+
+   13 expression: NEW INT_TYPE LBRACKET expression RBRACKET •
+
+    $default  reduce using rule 13 (expression)
+
+
+State 135
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   50 expression_list: expression •
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    AND       shift, and go to state 98
+    OR        shift, and go to state 99
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+
+    $default  reduce using rule 50 (expression_list)
+
+
+State 136
+
+   12 expression: expression DOT IDENTIFIER LPAREN expression_list • RPAREN
+   51 expression_list: expression_list • expression
+
+    NOT              shift, and go to state 75
+    LPAREN           shift, and go to state 76
+    RPAREN           shift, and go to state 139
+    TRUE             shift, and go to state 77
+    FALSE            shift, and go to state 78
+    THIS             shift, and go to state 79
+    NEW              shift, and go to state 80
+    INTEGER_LITERAL  shift, and go to state 81
+    IDENTIFIER       shift, and go to state 82
+
+    expression  go to state 140
+    factor      go to state 84
+
+
+State 137
+
+   24 statement: IF LPAREN expression RPAREN statement ELSE statement •
+
+    $default  reduce using rule 24 (statement)
+
+
+State 138
+
+   29 statement: IDENTIFIER LBRACKET expression RBRACKET ASSIGN expression SEMICOLON •
+
+    $default  reduce using rule 29 (statement)
+
+
+State 139
+
+   12 expression: expression DOT IDENTIFIER LPAREN expression_list RPAREN •
+
+    $default  reduce using rule 12 (expression)
+
+
+State 140
+
+    2 expression: expression • AND expression
+    3           | expression • OR expression
+    4           | expression • LT expression
+    5           | expression • EQ expression
+    6           | expression • PLUS expression
+    7           | expression • MINUS expression
+    8           | expression • MULT expression
+   10           | expression • LBRACKET expression RBRACKET
+   11           | expression • DOT LENGTH
+   12           | expression • DOT IDENTIFIER LPAREN expression_list RPAREN
+   51 expression_list: expression_list expression •
+
+    PLUS      shift, and go to state 95
+    MINUS     shift, and go to state 96
+    MULT      shift, and go to state 97
+    AND       shift, and go to state 98
+    OR        shift, and go to state 99
+    LT        shift, and go to state 100
+    EQ        shift, and go to state 101
+    DOT       shift, and go to state 102
+    LBRACKET  shift, and go to state 104
+
+    $default  reduce using rule 51 (expression_list)
