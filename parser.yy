@@ -74,6 +74,7 @@ goal: main_class class_declaration_list {
 };
 
 
+
 // Expression productions build nodes for arithmetic, logical, and other operations.
 expression: expression AND expression {
         $$ = new Node("AndExpression", "", yylineno);
@@ -352,8 +353,12 @@ expression_list: /* empty */ { $$ = nullptr; }
         $$->children.push_back($1);
     }
     | expression_list COMMA expression {
-        $1->children.push_back($3);
-        $$ = $1;
+        if ($1 == nullptr) {
+            $$ = new Node("ExpressionList", "", yylineno);
+        } else {
+            $$ = $1;
+        }
+        $$->children.push_back($3);
     }
     ;
 %%
